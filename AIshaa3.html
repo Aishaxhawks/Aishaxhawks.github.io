@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<head> <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Roboto&family=Source+Sans+Pro:wght@900&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&family=Playfair+Display:ital@1&family=Roboto&family=Source+Sans+Pro:wght@900&display=swap" rel="stylesheet">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<link href='https://fonts.googleapis.com/css?family=Londrina+Shadow' rel='stylesheet' type='text/css'>
+<style>
+body {
+  font-family: 'Playfair Display', serif;
+  margin: 0 auto;
+  max-width: 600px;
+  background: #65ECCE;
+}
+div {
+  height: 300px;
+  background-size: 100% 100%;
+  position: relative;
+  margin: 40px 0 0 0;
+  border-radius: 12px;
+}
+h1 {
+  font-family: 'Nanum Gothic', sans-serif;
+  text-align: center;
+  font-size: 75px;
+  color: #966;
+  margin: 60px 0 0 0;
+}
+h2 {
+  text-align: center;
+  color: #EC65E6;
+  margin: 0px 0 70px 0;
+}
+p {
+  color: rgba(236,101,255,1);
+  background: black;
+  background: linear-gradient(bottom, rgba(70,30,30,1), rgba(30,30,30,.4));
+  background: -webkit-linear-gradient(bottom, rgba(70,500,30,1), rgba(0,0,0,.4));
+  background: -moz-linear-gradient(bottom, rgba(90,60,2,1), rgba(0,0,0,.4));
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 30px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+}
+
+small {
+  opacity: 0;
+}
+
+.show-description p {
+  height: 150px;
+}
+
+.show-description small {
+  opacity: 1;
+}
+
+.first{
+  background-image: url("https://beyondfrosting.com/wp-content/uploads/2022/01/Easy-Moist-Vanilla-Cupcakes-021-2.jpg");
+}
+.second{
+  background-image: url("https://preppykitchen.com/wp-content/uploads/2018/04/Funfetti-cake-recipe-new.jpg");
+}
+.dessert{
+  background-image: url("https://www.inspiredtaste.net/wp-content/uploads/2022/11/Easy-Fudgy-Brownies-Recipe-2-1200.jpg");
+}
+.price {
+  float: right;
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+  }
+  div {
+    margin: 20px 12px 0 12px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  small {
+    font-size: 16px;
+  }
+}
+input {
+	font-size: 22px;
+}
+
+</style>
+
+</head>
+
+<body>
+<h1>DayLights</h1>
+<h2>a worldwide famous bakery</h2>
+<div class="first">
+	 <input class="quantities" type="number" min="0" style="width: 50px">
+  <p>cupcakes <span class="price">$24</span><br />
+  <small>A cupcake is a small cake designed to serve one person, which may be baked in a small thin paper or aluminum cup. As with larger cakes, frosting and other cake decorations such as fruit and candy may be applied.. </small></p>
+</div>
+
+<div class="second">
+	 <input class="quantities" type="number" min="0" style="width: 50px">
+  <p>cakes <span class="price">$52</span><br />
+  <small>Cake is a flour confection made from flour, sugar, and other ingredients, and is usually baked. In their oldest forms, cakes were modifications of bread, but cakes now cover a wide range of preparations..</small></p>
+</div>
+  
+<div class="dessert">
+	 <input class="quantities" type="number" min="0" style="width: 50px">
+  <p>brownies <span class="price">$18</span><br />
+  <small>A chocolate brownie or simply a brownie is a chocolate baked confection. Brownies come in a variety of forms and may be either fudgy or cakey, depending on their density. Brownies often, but not always, have a glossy "skin" on their upper crust.</small></p>
+</div>
+<br><br>
+  <input id="Name" type="email" placeholder="Your name">
+  <input id="Email" type="email" placeholder="Your email">
+  <input id="submit" type="submit">
+<br><br>
+<script>
+  $('div').on('click', function() {
+      $(this).toggleClass('show-description');
+  });
+</script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+  
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCtVQEjUZw0M3V3n79hr8Z46Kr_eiKUixI",
+    authDomain: "daylights-8389f.firebaseapp.com",
+    projectId: "daylights-8389f",
+    storageBucket: "daylights-8389f.appspot.com",
+    messagingSenderId: "56897355458",
+    appId: "1:56897355458:web:1a54513188cbb0ff28055b"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  
+
+
+    const Name = document.querySelector("#Name") 
+    const Email = document.querySelector("#Email")
+    document.querySelector('#submit').addEventListener('click', Submit)
+const quantities = document.querySelectorAll(".quantities")  
+const prices = document.querySelectorAll(".price") 
+  
+  
+const itemsList = ["cupcakes", "cakes", "brownies"]
+  function Submit() {
+    const timestamp = buildTimestamp()
+	  let total = 0
+	  let cart = { }
+	  for  (let i=0; i<quantities.length; i=i+1) {
+	  	if (quantities[i].value != "0" && quantities[i].value != "") {	
+			  let price = prices[i].innerHTML.replace('$', '')
+			  total = total + quantities[i].value * price 
+			
+	  		cart[itemsList[i]] = parseInt(quantities[i].value) 
+	  	}
+	  	quantities[i].value = ""
+	  }
+  
+    set(ref(db, timestamp), {
+  	  Name: Name.value,
+        email: Email.value,
+		cart: cart,
+		  totalPrice: total,
+		  paid: "not yet",
+    });
+
+    Name.value = ""
+    Email.value = ""
+  }
+    function buildTimestamp() {
+    const now = new Date();
+    let timestamp = now.getFullYear().toString() + "/";
+    //const month = now.toLocaleString('default', { month: 'long' });
+
+    let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+    month = month.toString()
+    month = addLeadingZero(month)
+    timestamp += month + "/"; 
+
+    let date = now.getDate().toString()
+    date = addLeadingZero(date)
+    timestamp += date + "/";
+
+    let hours = now.getHours().toString()
+    hours = addLeadingZero(hours)
+    timestamp += hours + ":";
+
+    let minutes = now.getMinutes().toString()
+    minutes = addLeadingZero(minutes)
+    timestamp += minutes + ":";
+
+    let seconds = now.getSeconds().toString()
+    seconds = addLeadingZero(seconds)
+    timestamp += seconds;
+
+    return timestamp
+  }
+
+  function addLeadingZero(units) {
+  	if (units.length < 2) {
+  		units = "0" + units
+  	}
+  	return units
+  }
+</script>
+</body>
